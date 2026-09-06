@@ -1,0 +1,29 @@
+# ===========================================
+# TODO: You will complete this file step by step
+# ===========================================
+
+services:
+  # ---- Application Services ----
+  # go-service:
+  #   build: ./services/go
+  #   ports:
+  #     - "8081:8080"
+
+  # node-service:
+  #   build: ./services/node
+  #   ports:
+  #     - "8082:8080"
+
+  # python-service:
+  #   build: ./services/python
+  #   ports:
+  #     - "8083:8080"
+
+  # ---- Observability ----
+  # prometheus:
+  #   image: prom/prometheus:v2.54.1
+  #   ...
+
+  # grafana:
+  #   image: grafana/grafana:11.2.0
+  #   ...
