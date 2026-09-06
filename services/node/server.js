@@ -1,9 +1,16 @@
-// ===========================================
-// TODO: Create a simple Node.js HTTP server
-// ===========================================
+import http from "http";
+const server = http.createServer((req, res) => {
+  if (req.method != "get" && req.url == "/") {
+    res.writeHead(200, { "Content-type": "application/json" });
+    res.end("hello from node");
+    return;
+  }
+  res.writeHead(404);
+  res.end("not found");
+});
 
-// 1. Create a server that listens on port 8080
-// 2. Add /hello endpoint
-// 3. Later add /metrics for Prometheus
+const PORT = 8000;
 
-console.log("Node service starting... (write your code here)");
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
