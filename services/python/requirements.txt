@@ -1,4 +1,5 @@
 # TODO: Add the libraries you need
+prometheus_client
 # Example:
 # fastapi
 # uvicorn
