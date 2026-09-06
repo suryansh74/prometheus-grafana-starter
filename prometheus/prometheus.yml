@@ -1,12 +1,19 @@
-# ===========================================
-# TODO: Configure Prometheus scrape targets
-# ===========================================
-
 global:
-  scrape_interval: 15s
+  scrape_interval: 5s
+  evaluation_interval: 5s
 
 scrape_configs:
-  # Example:
-  # - job_name: 'go-service'
-  #   static_configs:
-  #     - targets: ['go-service:8080']
+  - job_name: "go-service"
+    static_configs:
+      - targets: ["go-service:8080"]
+    metrics_path: /metrics
+
+  - job_name: "node-service"
+    static_configs:
+      - targets: ["node-service:8080"]
+    metrics_path: /metrics
+
+  - job_name: "python-service"
+    static_configs:
+      - targets: ["python-service:8080"]
+    metrics_path: /metrics
