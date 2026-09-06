@@ -12,6 +12,6 @@ const server = http.createServer((req, res) => {
 });
 
 const PORT = 8080;
-server.listen(PORT, () => {
-  console.log(`Node service running on http://localhost:${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Node service running on http://0.0.0.0:${PORT}`);
 });

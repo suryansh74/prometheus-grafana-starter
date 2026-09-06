@@ -7,19 +7,21 @@ import (
 	"net/http"
 )
 
-const addr = "localhost:8081"
-
 func main() {
-	fmt.Println("Go service starting... (write your code here)")
-	server := http.NewServeMux()
-	server.HandleFunc("/", EnteryPointHandler)
-	if err := http.ListenAndServe(addr, server); err != nil {
-		log.Println("http error", err)
+	fmt.Println("Go service starting on :8080")
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/hello", helloHandler)
+
+	if err := http.ListenAndServe(":8080", mux); err != nil {
+		log.Fatal(err)
 	}
 }
 
-func EnteryPointHandler(w http.ResponseWriter, r *http.Request) {
+func helloHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"message": "Hello from go"})
+	json.NewEncoder(w).Encode(map[string]string{
+		"message": "Hello from Go!",
+	})
 }
