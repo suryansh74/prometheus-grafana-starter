@@ -1,22 +1,25 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 )
 
-// TODO: 
-// 1. Create a simple HTTP server
-// 2. Add a /hello endpoint
-// 3. Add a /metrics endpoint (Prometheus)
-// 4. Later add request counting and latency metrics
+const addr = "localhost:8081"
 
 func main() {
 	fmt.Println("Go service starting... (write your code here)")
+	server := http.NewServeMux()
+	server.HandleFunc("/", EnteryPointHandler)
+	if err := http.ListenAndServe(addr, server); err != nil {
+		log.Println("http error", err)
+	}
+}
 
-	// Example skeleton:
-	// http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-	//     w.Write([]byte("Hello from Go"))
-	// })
-	// http.ListenAndServe(":8080", nil)
+func EnteryPointHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]any{"message": "Hello from go"})
 }

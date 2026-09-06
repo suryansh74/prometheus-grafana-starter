@@ -1,16 +1,17 @@
-import http from "http";
+const http = require("http");
+
 const server = http.createServer((req, res) => {
-  if (req.method != "get" && req.url == "/") {
-    res.writeHead(200, { "Content-type": "application/json" });
-    res.end("hello from node");
+  if (req.method === "GET" && req.url === "/hello") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Hello from Node!");
     return;
   }
-  res.writeHead(404);
-  res.end("not found");
+
+  res.writeHead(404, { "Content-Type": "text/plain" });
+  res.end("Not Found");
 });
 
-const PORT = 8000;
-
+const PORT = 8080;
 server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Node service running on http://localhost:${PORT}`);
 });
